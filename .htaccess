@@ -1,0 +1,35 @@
+DirectoryIndex web/index.php #to make web/index.php as index
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^/]+)/$ $1.php
+RewriteRule ^([^/]+)/([^/]+)/$ /$1/$2.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !(\.[a-zA-Z0-9]{1,5}|/)$
+RewriteRule (.*)$ /$1/ [R=301,L]
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+
+#ErrorDocument 404 http://localhost/rapida/404
+#ErrorDocument 500 http://localhost/rapida/500
+# or map them to one error document:
+#ErrorDocument 400 error.php
+#ErrorDocument 401 error.php
+#ErrorDocument 403 error.php
+#ErrorDocument 404 error.php
+#ErrorDocument 500 error.php
+
+#RewriteEngine On
+#RewriteBase /
+
+#RewriteCond %{REQUEST_URI} ^/404/$
+#RewriteRule ^(.*)$ /404.php [L]
+
+#RewriteCond %{REQUEST_URI} ^/500/$
+#RewriteRule ^(.*)$ /500.php [L]
+
+# or map them to one error document:
+RewriteCond %{REQUEST_URI} ^/404/$ [OR]
+RewriteCond %{REQUEST_URI} ^/500/$
+RewriteRule ^(.*)$ web/error.php [L]
