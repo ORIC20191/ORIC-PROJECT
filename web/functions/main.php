@@ -1,4 +1,11 @@
 <?php
+    require_once('classes.php');
+
+    //1 - Conexão com DB
+    define('DB_HOST', 'localhost');
+    define('DB_USER', 'oric');
+    define('DB_PASS', 'y2gMrjJGClnXzGli');
+    define('DB_NAME', 'oric_php');
 
 	//Definições de Variáveis de Visualização
 	define('YEAR', date('Y'));
