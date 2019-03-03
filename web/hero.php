@@ -5,7 +5,7 @@
                     <nav class="navbar">
                         <div class="container">
                             <div class="navbar-brand">
-                                <a class="navbar-item" href="index"><img class="logo" src="assets/brand/1_crop.png" alt="Logo"></a>
+                                <a class="navbar-item" href="index"><img class="logo" src="web/assets/brand/1_crop.png" alt="Logo"></a>
                                 <span class="navbar-burger burger" data-target="navbarMenu">
                                     <span></span>
                                     <span></span>
