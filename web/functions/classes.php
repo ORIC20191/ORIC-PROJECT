@@ -1,4 +1,34 @@
 <?php
+
+	class Tables {
+		function LoadFrom($str){
+	      return "SELECT * FROM ".$str;
+	    }
+
+	    function Found_Item($item, $str) {
+	      return $item.'_'.substr($str, 0, 3);
+	    }
+		
+		function LoadCountFrom($str){
+	      $Tables = new Tables;
+	      define ('ID_TABLE', $Tables->Found_Item('id', $str));
+	      return "SELECT count(".ID_TABLE.") as qt from ".$str;
+	    }
+		
+		function CountViewTable($str){
+	      $Tables = new Tables;
+	      $Load = new Load;
+	      $PDO = $Load->DataBase();
+	      $sql = $Tables->LoadCountFrom($str);
+	      $res = $PDO->query($sql) or die ($PDO);
+	      while($row = $res->fetch(PDO::FETCH_OBJ)){
+	        $r = $row->qt;
+	      }
+	      return $r;
+	    }
+	}
+  	$Tables = new Tables;
+
 	/**
 	 * 
 	 */
@@ -39,20 +69,27 @@
 
 	    function Team(){
 	    	$Load = new Load;
-	    	$sql = 'SELECT * FROM devs';
+	    	$Tables = new Tables;
+	    	$sql = $Tables->LoadFrom('devs');
 			$query = $Load->DataBase()->query($sql) or die ($Load->DataBase());
+			$count = $Tables->CountViewTable('devs');
+			$res = intval($count / 3);
+
 			echo '<div class="columns">';
 			while($row = $query->fetch(PDO::FETCH_OBJ)){
 				$nome = $row->nome_dev;
 				$funcao = '';
 				$foto = $Load->Gravatar($row->email_dev);
-				echo '
-					<div class="column">
-                    	<div class="content has-text-left">
-							<figure class="image is-128x128"><img class="is-rounded" src="'.$foto.'"></figure>
-							<p>'.$nome.'</p><p>'.$funcao.'</p>
-						</div>	
-					</div>';
+				for ($i = 1; $i <= $res; $i++){
+					echo'
+						<div class="column">
+	                    	<div class="content has-text-left">
+								<figure class="image is-128x128"><img class="is-rounded" src="'.$foto.'"></figure>
+								<p>'.$nome.'</p>
+								<p>'.$funcao.'</p>
+							</div>
+						</div>';
+				}
 			}
 			echo '</div>';
 	    }
