@@ -29,9 +29,6 @@
 	}
   	$Tables = new Tables;
 
-	/**
-	 * 
-	 */
 	class Load
 	{
 		
