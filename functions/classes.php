@@ -29,6 +29,9 @@
 	}
   	$Tables = new Tables;
 
+	/**
+	 * 
+	 */
 	class Load
 	{
 		
@@ -91,41 +94,92 @@
 			echo '</div>';
 	    }
 
-	    function ShowMenu($str){
-	    	$active = (!$str) ? '' : 'is-active';
+	    function LoadMenu($str){
+	    	switch ($str) {
+	    		case 'index':
+	    			$type_hero = 'fullheight';
+	    			$hero_body = '
+		    			<div class="hero-body">
+		                    <div class="container has-text-centered">
+		                        <div class="columns is-vcentered">
+		                            <div class="column is-5">
+		                                <figure class="image is-4by3"><img src="https://picsum.photos/800/600/?random" alt="Description"></figure>
+		                            </div>
+		                            <div class="column is-6 is-offset-1">
+		                                <h1 class="title is-2">Olá, eu sou o ORIC</h1>
+		                                <h2 class="subtitle is-4">Um robô que está para te ajudar.</h2>
+		                                <br>
+		                                <p class="has-text-centered"><a href="#sobre" class="button is-medium is-info is-outlined">Conheça</a></p>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="hero-foot">
+		                    <div class="container">
+		                        <div class="tabs is-centered">
+		                            <ul>
+		                                <li><a><!--Estamos preparando algo aqui--></a></li>
+		                            </ul>
+		                        </div>
+		                    </div>
+		                </div>';
+	    		break;
+	    		
+	    		case 'cadastra':
+	    			$type_hero = 'medium';
+	    			$hero_body = '
+	    				<div class="hero-body">
+	    					<div class="container has-text-centered">
+		    					<div class="columns is-vcentered">
+			                        <div class="column is-5">
+			                	        <figure class="image is-4by3"><img src="https://picsum.photos/800/600/?random" alt="Description"></figure>
+			                        </div>
+			                       	<div class="column is-6 is-offset-1">
+		    							<h1 class="title is-2">ORIC gosta de imagens</h1>
+		    							<h2 class="subtitle is-4">Cadastre uma imagem para ele.</h2>
+		    						</div>
+		    					</div>
+		    				</div>
+	    				</div>';
+	    		break;
+	    	}
+
 	    	echo'
-		    	<nav class="navbar">
-	                <div class="container">
-	                    <div class="navbar-brand">
-	                        <a class="navbar-item" href="index">
-	                        	<img class="logo" src="assets/brand/1_crop.png" alt="Logo"></a>
-	                        <span class="navbar-burger burger" data-target="navbarMenu">
-	                            <span></span>
-	                            <span></span>
-	                           	<span></span>
-	                        </span>
-	                    </div>
-	                    <div id="navbarMenu" class="navbar-menu">
-	                       	<div class="navbar-end">
-	                            <div class="tabs is-right">
-	                                <ul>
-										<li class="'.$active.'">
-											<a href="index#topo">Início</a></li>
-		                                <li>
-		                                	<a href="index#sobre">Sobre</a></li>
-		                                <li>
-		                                	<a href="index#funcoes">Funções</a></li>
-		                                <li>
-		                                	<a href="index#equipe">Equipe</a></li>
-		                                <li>
-		                                	<a href="index#apoio">Apoio</a></li>
-		                                <li class="'.$active.'"><a href="cadastra">Cadastre Sua Imagem</a></li>
-	                                </ul>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-	            </nav>';
+	    	<section class="hero is-'.$type_hero.' is-default is-bold" id="topo">
+                <div class="hero-head">
+                    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+                        <div class="container">
+                            <div class="navbar-brand">
+                                <a class="navbar-item" href="index"><img class="logo" src="assets/brand/1_crop.png" alt="Logo"></a>
+                                <div class="navbar-burger burger" data-target="navMenubd-example">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                            </div>
+                            <div id="navMenubd-example" class="navbar-menu">
+                                <div class="navbar-start ">
+                                    <div class="navbar-item has-dropdown is-hoverable">
+                                        <a class="navbar-link is-active" href="index">Início</a>
+                                        <div class="navbar-dropdown ">
+                                            <a class="navbar-item" href="index#sobre">Sobre</a>
+                                            <a class="navbar-item" href="index#funcoes">Funções</a>
+                                            <a class="navbar-item" href="index#equipe">Equipe</a>
+                                            <a class="navbar-item" href="index#apoio">Apoio</a>
+                                        </div>
+                                        <a class="navbar-item" href="cadastra">Cadastre sua Imagem</a>
+                                        <a class="navbar-item" href="contato">Contato</a>
+                                    </div>
+                                    <div class="navbar-end">
+                                        <a class="navbar-item">
+                                            <i class="fas fa-search" aria-hidden="true"></i>&nbsp;<span><input class="input" type="search" placeholder="Procurar..."></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>'.$hero_body.'</section>';
 	    }
 	}
 	$Load = new Load;
