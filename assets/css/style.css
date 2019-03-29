@@ -1,7 +1,11 @@
 /*Import and Normalize*/
 @import url('../bulma/css/bulma.min.css');
+/*@import url('../bulma-pageloader/css/bulma-pageloader.min.css');
+@import url('../bulma-pageloader/src/sass/index.sass');*/
 /*@import url('https://unpkg.com/bulma@0.7.4/css/bulma.min.css');*/
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+/*@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');*/
+/** ICONS */
+@import url('../fonts/fontawesome/css/all.css');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 html, body { font-family: 'Open Sans'; }
@@ -11,6 +15,10 @@ img {
     border: 1px solid #ccc;
 }
 
+.navbar.is-fixed-top {
+	background: #fff;
+}
+
 .logo {
 	border: none;
 }
@@ -18,3 +26,11 @@ img {
 .navbar-item .logo{
 	max-height: 4.75rem;
 }
+
+/** CONTENT */
+.title.is-6 .title.is-mega-menu-title{ color: #9d9d9d; }
+
+.section {
+  padding: 5rem 1.5rem;
+}
+.section p { padding: 0.8em; }
