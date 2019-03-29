@@ -1,4 +1,7 @@
-<?php include('hero.php'); ?>
+<?php 
+    include('header.php'); 
+    echo $Load->LoadMenu('index');
+?>
     <section class="section is-black" id="sobre">
         <div class="container">
             <h1 class="title">Quem sou eu?</h1>
