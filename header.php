@@ -16,3 +16,4 @@
         <script src="assets/js/menu.js"></script>
 	</head>
 	<body>
+		<div class="pageloader"><span class="title"></span></div>
