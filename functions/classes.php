@@ -142,44 +142,73 @@
 		    				</div>
 	    				</div>';
 	    		break;
+
+	    		case 'contato':
+	    			$type_hero = 'medium';
+	    			$hero_body = '
+	    				<div class="hero-body">
+	    					<div class="container has-text-centered">
+		    					<div class="columns is-vcentered">
+			                        <div class="column is-5">
+			                	        <figure class="image is-4by3"><img src="https://picsum.photos/800/600/?random" alt="Description"></figure>
+			                        </div>
+			                       	<div class="column is-6 is-offset-1">
+		    							<h1 class="title is-2">ORIC gosta de imagens</h1>
+		    							<h2 class="subtitle is-4">Cadastre uma imagem para ele.</h2>
+		    						</div>
+		    					</div>
+		    				</div>
+	    				</div>';
+	    		break;
 	    	}
 
 	    	echo'
 	    	<section class="hero is-'.$type_hero.' is-default is-bold" id="topo">
                 <div class="hero-head">
-                    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
-                        <div class="container">
-                            <div class="navbar-brand">
-                                <a class="navbar-item" href="index"><img class="logo" src="assets/brand/1_crop.png" alt="Logo"></a>
-                                <div class="navbar-burger burger" data-target="navMenubd-example">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </span>
-                            </div>
-                            <div id="navMenubd-example" class="navbar-menu">
-                                <div class="navbar-start ">
-                                    <div class="navbar-item has-dropdown is-hoverable">
-                                        <a class="navbar-link is-active" href="index">Início</a>
-                                        <div class="navbar-dropdown ">
-                                            <a class="navbar-item" href="index#sobre">Sobre</a>
-                                            <a class="navbar-item" href="index#funcoes">Funções</a>
-                                            <a class="navbar-item" href="index#equipe">Equipe</a>
-                                            <a class="navbar-item" href="index#apoio">Apoio</a>
-                                        </div>
-                                        <a class="navbar-item" href="cadastra">Cadastre sua Imagem</a>
-                                        <a class="navbar-item" href="contato">Contato</a>
-                                    </div>
-                                    <div class="navbar-end">
-                                        <a class="navbar-item">
-                                            <i class="fas fa-search" aria-hidden="true"></i>&nbsp;<span><input class="input" type="search" placeholder="Procurar..."></span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
-                </div>'.$hero_body.'</section>';
+                	<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+                		<div class="container">
+					  		<div class="navbar-brand">
+							    <a class="navbar-item" href="index">
+							    	<img class="logo" src="assets/brand/1_crop.png" alt="Logo">
+							    </a>
+							    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+								    <span aria-hidden="true"></span>
+								    <span aria-hidden="true"></span>
+								    <span aria-hidden="true"></span>
+							    </a>
+	  						</div>
+	  						<div id="navbarBasicExample" class="navbar-menu">
+							    <div class="navbar-start">
+							    	<div class="navbar-item has-dropdown is-hoverable">
+							      		<a class="navbar-link is-active" href="index">Início</a>
+							        	<div class="navbar-dropdown">
+								         	<a class="navbar-item" href="index#sobre">Sobre</a>
+								          	<a class="navbar-item" href="index#funcoes">Funções</a>
+								          	<a class="navbar-item" href="index#equipe">Equipe</a>
+								          	<hr class="navbar-divider">
+								          	<a class="navbar-item" href="index#apoio">Apoio</a>
+							        	</div>
+							      	</div>
+							    </div>
+	    						<div class="navbar-end">
+	      							<div class="navbar-item">
+	      								<a class="navbar-item">
+	                                        <i class="fas fa-search" aria-hidden="true"></i>&nbsp;&nbsp;
+	                                        <span><input class="input" type="search" placeholder="Procurar..."></span>
+	                                    </a>
+	                                </div>
+	        						<div class="buttons">
+							          	<a class="button is-primary" href="cadastra">
+							            	<strong><i class="fas fa-camera"></i>&nbsp;Cadastro</strong>
+							          	</a>
+	          							<a class="button is-light" href="contato"><i class="fas fa-envelope"></i>&nbsp;Contato</a>
+	        						</div>
+	      						</div>
+	    					</div>
+	    				</div>
+  					</div>
+				</nav>
+            </div>'.$hero_body.'</section>';
 	    }
 	}
 	$Load = new Load;
