@@ -1,9 +1,11 @@
 <?php
   include('header.php');
+  #echo $Navegation->HeroMenu();
   switch ($Login->IsLogged()) {
     case false:
         $title = 'Recuperar';
-        $message = 'Informe o e-mail para recuperar seu acesso
+        $message = '
+          Informe o e-mail para recuperar seu acesso
           <figure class="image is-128x128 avatar"><img class="is-rounded" src="'.$picture.'"></figure>
           <form method="post" action="">
             <div class="field">
@@ -60,7 +62,7 @@
         $links[2] = 'Início';
         $links[3] = '#'; 
         $links[4] = 'Voltar aonde estava';
-      break;
+    break;
   }
   include('functions/ops.php');
   include('footer.php');
