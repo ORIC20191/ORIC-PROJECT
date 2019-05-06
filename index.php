@@ -1,6 +1,6 @@
 <?php 
-    include('header.php'); 
-    echo $Load->LoadMenu('index');
+    include('header.php');
+    echo $Navegation->HeroMenu();
 ?>
     <section class="section is-black" id="sobre">
         <div class="container">
