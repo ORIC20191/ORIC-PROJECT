@@ -212,10 +212,14 @@
 	    	$Login = new Login;
 	    	switch($Login->IsLogged()){
                 case true:
+                	$link_sec = 'logout';
                 	switch ($link) {
                 		case 'index': case SERVER: 
                 			$section_class = 'is-fullheight';
                 			$message = '
+                				<div class="column is-5">
+									<figure class="image is-4by3"><img src="https://picsum.photos/800/600/?random" alt="Description"></figure>
+								</div>
 	                			<div class="column is-6 is-offset-1">
 									<h1 class="title is-2">Olá, eu sou o ORIC</h1>
 									<h2 class="subtitle is-4">Um robô que está para te ajudar.</h2>
@@ -226,6 +230,9 @@
                 		case 'cadastra': 
                 			$section_class = 'is-medium';
                 			$message = '
+                				<div class="column is-5">
+									<figure class="image is-4by3"><img src="https://picsum.photos/800/600/?random" alt="Description"></figure>
+								</div>
                 				<div class="column is-6 is-offset-1">
 									<h1 class="title is-2">ORIC gosta de imagens</h1>
 									<h2 class="subtitle is-4">Cadastre uma imagem para ele.</h2>
@@ -234,21 +241,33 @@
                 		case 'contato': 
                 			$section_class = 'is-medium';
                 			$message = '
+                				<div class="column is-5">
+									<figure class="image is-4by3"><img src="https://picsum.photos/800/600/?random" alt="Description"></figure>
+								</div>
                 				<div class="column is-6 is-offset-1">
 									<h1 class="title is-2">ORIC gosta de imagens</h1>
 									<h2 class="subtitle is-4">Cadastre uma imagem para ele.</h2>
 								</div>';
                 		break;
                 	}
-                case false: 
-                	$section_class = 'is-fullheight'; 
-                	$message = '
-						<div class="column is-6 is-offset-1">
-							<h1 class="title is-2">Olá, eu sou o ORIC</h1>
-							<h2 class="subtitle is-4">Um robô que está para te ajudar.</h2>
-							<br>
-							<p class="has-text-centered"><a href="'.SERVER.'#sobre" class="button is-medium is-info is-outlined">Conheça</a></p>
-						</div>';
+                case false:
+                	$link_sec = 'login';
+                	switch ($link) {
+                		case 'index': case SERVER: 
+		                	$section_class = 'is-fullheight'; 
+		                	$message = '
+		                		<div class="column is-5">
+									<figure class="image is-4by3"><img src="https://picsum.photos/800/600/?random" alt="Description"></figure>
+								</div>
+								<div class="column is-6 is-offset-1">
+									<h1 class="title is-2">Olá, eu sou o ORIC</h1>
+									<h2 class="subtitle is-4">Um robô que está para te ajudar.</h2>
+									<br>
+									<p class="has-text-centered"><a href="'.SERVER.'#sobre" class="button is-medium is-info is-outlined">Conheça</a></p>
+								</div>';
+							break;
+						default: $section_class = 'is-small'; $message = ''; break;
+					}
                 break;
             }
 
@@ -292,6 +311,7 @@
 									            	<strong><i class="fas fa-camera"></i>&nbsp;Cadastro</strong>
 									          	</a>
 			          							<a class="button is-light" href="contato"><i class="fas fa-envelope"></i>&nbsp;Contato</a>
+			          							<a class="button is-light" href="'.$link_sec.'"><i class="fas fa-user"></i>&nbsp;Entrar</a>
 			        						</div>
 			      						</div>
 			    					</div>
@@ -302,9 +322,6 @@
 		            <div class="hero-body">
 						<div class="container has-text-centered">
 							<div class="columns is-vcentered">
-								<div class="column is-5">
-									<figure class="image is-4by3"><img src="https://picsum.photos/800/600/?random" alt="Description"></figure>
-								</div>
 				                '.$message.'    
 							</div>
 						</div>
