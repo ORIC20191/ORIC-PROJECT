@@ -29,8 +29,8 @@
                         <option value="1">Diretor</option>
                         <option value="2">Coordenador</option>
                         <option value="3">Funcionário</option>
-                        <option value="4" disabled>Professor</option>
-                        <option value="5" disabled>Aluno</option>
+                        <option value="4">Professor</option>
+                        <option value="5">Aluno</option>
                       </select>
                     </div>
                     <span class="icon is-small is-left"><i class="fas fa-chalkboard-teacher"></i></span>
