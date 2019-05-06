@@ -98,7 +98,7 @@
 	    
 	    # 4 - Descobrir o link para gerar o Load page
 	    function DiscoverLink($link = LINK, $sizeof = false){
-	    	$link = substr(LINK, 1);
+	    	$link = substr($link, 1);
 	    	if ($link != 'login')
 	    		$link = (isset($_GET['id'])) ? substr($link, 0, $sizeof) : $link;
 	    	else
@@ -171,36 +171,34 @@
 
 		function WhatLink($link = LINK){
 			switch ($link) {
-				case 'cadastra': $str = 'Cadastrar Imagens'; break;
+				case 'upload': $str = 'Cadastrar Imagens'; break;
+				case 'contact': $str = 'Contato'; break;
 				case SERVER: $str = 'Início'; break;
 		    }
 		    return $str;
 		}
 
-		function Team(){
+		function Team($struct = '<div class="columns">'){
 			$Load = new Load;
 	    	$Tables = new Tables;
-			$query = $Load->DataBase()->query($Tables->SelectFrom(null,'devs')) or die ($Load->DataBase());
+			$query = $Load->DataBase()->query($Tables->SelectFrom(null,'devs, users WHERE devs.id_use = users.id_use')) or die ($Load->DataBase());
 			$count = $Tables->CountViewTable(null, 'devs');
 			$res = intval($count / 3);
-
-			echo '<div class="columns">';
 			while($row = $query->fetch(PDO::FETCH_OBJ)){
-				$nome = $row->nome_dev;
-				$funcao = '';
-				$foto = $Load->Gravatar($row->email_dev);
+				$nome = $row->name_use;
+				$funcao = $row->type_dev;
+				$foto = $Load->Gravatar($row->email);
 				for ($i = 1; $i <= $res; $i++){
-					echo'
+					$struct.='
 						<div class="column">
-	                    	<div class="content has-text-left">
-								<figure class="image is-128x128"><img class="is-rounded" src="'.$foto.'"></figure>
-								<p>'.$nome.'</p>
-								<p>'.$funcao.'</p>
+							<figure class="image is-128x128 avatar"><img class="is-rounded" src="'.$foto.'"></figure>
+	                    	<div class="content has-text-centered">
+								<p>'.$nome.'<br/>'.$funcao.'</p>
 							</div>
 						</div>';
 				}
 			}
-			echo '</div>';
+			return $struct.= '</div>';
 		}
 	}
 	$Load = new Load;
@@ -210,68 +208,53 @@
 		# 1 - Gera o Menu de topo se o usuário estiver logado. Menu irá variar de acordo com o tipo de usuário
 	    function HeroMenu($link = LINK){
 	    	$Login = new Login;
+	    	$link = substr($link, 1);
 	    	switch($Login->IsLogged()){
-                case true:
-                	$link_sec = 'logout';
-                	switch ($link) {
-                		case 'index': case SERVER: 
-                			$section_class = 'is-fullheight';
-                			$message = '
-                				<div class="column is-5">
-									<figure class="image is-4by3"><img src="https://picsum.photos/800/600/?random" alt="Description"></figure>
-								</div>
-	                			<div class="column is-6 is-offset-1">
-									<h1 class="title is-2">Olá, eu sou o ORIC</h1>
-									<h2 class="subtitle is-4">Um robô que está para te ajudar.</h2>
-									<br>
-									<p class="has-text-centered"><a href="'.SERVER.'#sobre" class="button is-medium is-info is-outlined">Conheça</a></p>
-								</div>';
-                		break;
-                		case 'cadastra': 
-                			$section_class = 'is-medium';
-                			$message = '
-                				<div class="column is-5">
-									<figure class="image is-4by3"><img src="https://picsum.photos/800/600/?random" alt="Description"></figure>
-								</div>
-                				<div class="column is-6 is-offset-1">
-									<h1 class="title is-2">ORIC gosta de imagens</h1>
-									<h2 class="subtitle is-4">Cadastre uma imagem para ele.</h2>
-								</div>';
-                		break;
-                		case 'contato': 
-                			$section_class = 'is-medium';
-                			$message = '
-                				<div class="column is-5">
-									<figure class="image is-4by3"><img src="https://picsum.photos/800/600/?random" alt="Description"></figure>
-								</div>
-                				<div class="column is-6 is-offset-1">
-									<h1 class="title is-2">ORIC gosta de imagens</h1>
-									<h2 class="subtitle is-4">Cadastre uma imagem para ele.</h2>
-								</div>';
-                		break;
-                	}
-                case false:
-                	$link_sec = 'login';
-                	switch ($link) {
-                		case 'index': case SERVER: 
-		                	$section_class = 'is-fullheight'; 
-		                	$message = '
-		                		<div class="column is-5">
-									<figure class="image is-4by3"><img src="https://picsum.photos/800/600/?random" alt="Description"></figure>
-								</div>
-								<div class="column is-6 is-offset-1">
-									<h1 class="title is-2">Olá, eu sou o ORIC</h1>
-									<h2 class="subtitle is-4">Um robô que está para te ajudar.</h2>
-									<br>
-									<p class="has-text-centered"><a href="'.SERVER.'#sobre" class="button is-medium is-info is-outlined">Conheça</a></p>
-								</div>';
-							break;
-						default: $section_class = 'is-small'; $message = ''; break;
-					}
+				case true: $link_sec = 'logout'; $show_profile = '<a class="navbar-link is-active" href="profile">Perfil</a>'; break;
+				case false: $link_sec = 'login'; $show_profile = '';
+			}
+			echo $link;
+	    	switch ($link) {
+	    		case 'index': case SERVER: case '':
+					$section_class = 'is-fullheight';
+					$message = '
+						<div class="column is-5">
+						<figure class="image is-4by3"><img src="https://picsum.photos/800/600/?random" alt="Description"></figure>
+						</div>
+						<div class="column is-6 is-offset-1">
+						<h1 class="title is-2">Olá, eu sou o ORIC</h1>
+						<h2 class="subtitle is-4">Um robô que está para te ajudar.</h2>
+						<br>
+						<p class="has-text-centered"><a href="'.SERVER.'#sobre" class="button is-medium is-info is-outlined">Conheça</a></p>
+						</div>';
+				break;
+				case 'upload': 
+                	$section_class = 'is-medium';
+                	$message = '
+                		<div class="column is-5">
+							<figure class="image is-4by3"><img src="https://picsum.photos/800/600/?random" alt="Description"></figure>
+						</div>
+                		<div class="column is-6 is-offset-1">
+							<h1 class="title is-2">ORIC gosta de imagens</h1>
+							<h2 class="subtitle is-4">Cadastre uma imagem para ele.</h2>
+						</div>';
                 break;
-            }
+                case 'contato': 
+                	$section_class = 'is-medium';
+                	$message = '
+                		<div class="column is-5">
+							<figure class="image is-4by3"><img src="https://picsum.photos/800/600/?random" alt="Description"></figure>
+						</div>
+                		<div class="column is-6 is-offset-1">
+							<h1 class="title is-2">ORIC gosta de imagens</h1>
+							<h2 class="subtitle is-4">Cadastre uma imagem para ele.</h2>
+						</div>';
+                break;
+				case 'login': $section_class = 'is-small'; $show_profile = $message = ''; break;
+	    	}
+			
 
-            return '
+            $menu = '
 	            <section class="hero '.$section_class.' is-default is-bold" id="topo">
 		        	<div class="hero-head">
 		                <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
@@ -297,6 +280,7 @@
 										          	<hr class="navbar-divider">
 										          	<a class="navbar-item" href="'.SERVER.'#apoio">Apoio</a>
 									        	</div>
+									        	'.$show_profile.'
 									      	</div>
 									    </div>
 			    						<div class="navbar-end">
@@ -307,10 +291,10 @@
 			                                    </a>
 			                                </div>
 			        						<div class="buttons">
-									          	<a class="button is-primary" href="cadastra">
+									          	<a class="button is-primary" href="upload">
 									            	<strong><i class="fas fa-camera"></i>&nbsp;Cadastro</strong>
 									          	</a>
-			          							<a class="button is-light" href="contato"><i class="fas fa-envelope"></i>&nbsp;Contato</a>
+			          							<a class="button is-light" href="contact"><i class="fas fa-envelope"></i>&nbsp;Contato</a>
 			          							<a class="button is-light" href="'.$link_sec.'"><i class="fas fa-user"></i>&nbsp;Entrar</a>
 			        						</div>
 			      						</div>
@@ -327,6 +311,7 @@
 						</div>
 					</div>
 	        	</section>';
+	        return $menu;
     	}
     }
     $Navegation = new Navegation;
