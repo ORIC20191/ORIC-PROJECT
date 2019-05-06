@@ -1,6 +1,6 @@
 <?php 
 	include('header.php');
-	echo $Load->LoadMenu('cadastra');
+	echo $Navegation->HeroMenu();
 ?>
 <section class="section is-black" id="formulario">
 	<div class="container">
