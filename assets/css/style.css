@@ -15,6 +15,16 @@ img {
     border: 1px solid #ccc;
 }
 
+/** HERO */
+.hero .container .title.is-large { font-size: 5rem; }
+.hero .container .title.is-medium { font-size: 3rem; }
+.hero .container .title.is-small { font-size: 2rem; }
+
+.hero .subtitle {
+  padding: 0.5rem 0;
+  line-height: 1.5;
+}
+
 .navbar.is-fixed-top {
 	background: #fff;
 }
@@ -27,10 +37,31 @@ img {
 	max-height: 4.75rem;
 }
 
-/** CONTENT */
-.title.is-6 .title.is-mega-menu-title{ color: #9d9d9d; }
+.navbar-item.is-logo { 
+  font-size: 2rem;
+  max-height: 3rem;
+}
 
+.navbar-link, .navbar-item {
+  background: none; 
+  color: #9d9d9d;
+}
+
+/** CONTENT */
 .section {
   padding: 5rem 1.5rem;
 }
 .section p { padding: 0.8em; }
+
+.avatar {
+  margin-left: 35%;
+}
+
+.title.is-6 .title.is-mega-menu-title{ color: #9d9d9d; }
+
+/* LOGIN */
+.box { 
+  margin-top: 5rem; 
+}
+
+.box .title.is-medium { color: #333; }
