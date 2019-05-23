@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '2#c4r6ku+t72nh6=hl3@6am!ywb6wwfo!n_!8mhzngv&f-6a3u'
+SECRET_KEY = 'p*o!-pzju2!uf)g19y6o(jtb8okk#t(*2*j!$%p16qocl96-pt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,12 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-
-    #Inserindo o Mongo aqui
-    'django_mongoengine',
-    'django_mongoengine.mongo_auth',
-    'django_mongoengine.mongo_admin',
 ]
 
 MIDDLEWARE = [
@@ -79,19 +73,12 @@ WSGI_APPLICATION = 'web.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-
 DATABASES = {
-   'default': {
-      'ENGINE': 'djongo',
-      'NAME': 'db.oric',
-   }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.mongo',
-#        'NAME': os.path.join(BASE_DIR, 'db.oric'),
-#    }
-#}
 
 
 # Password validation
