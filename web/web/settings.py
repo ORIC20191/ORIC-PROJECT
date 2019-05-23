@@ -37,6 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+
+    #Inserindo o Mongo aqui
+    'django_mongoengine',
+    'django_mongoengine.mongo_auth',
+    'django_mongoengine.mongo_admin',
 ]
 
 MIDDLEWARE = [
@@ -73,12 +79,19 @@ WSGI_APPLICATION = 'web.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.path.join(BASE_DIR, 'db.oric'),
-    }
+   'default': {
+      'ENGINE': 'djongo',
+      'NAME': 'db.oric',
+   }
 }
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mongo',
+#        'NAME': os.path.join(BASE_DIR, 'db.oric'),
+#    }
+#}
 
 
 # Password validation
