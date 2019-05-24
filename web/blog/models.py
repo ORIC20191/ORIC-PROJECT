@@ -18,3 +18,15 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Person(models.Model):
+    name_user = models.CharField(max_length=200)
+    email_user = models.CharField(max_length=200)
+
+
+class Upload(models.Model):
+   name_user = models.CharField(max_length=200)
+   email_user = models.CharField(max_length=200)
+   photo = models.CharField(max_length=200)
+        
