@@ -29,9 +29,4 @@ class Upload(models.Model):
    name_user = models.CharField(max_length=200)
    email_user = models.CharField(max_length=200)
    photo = models.CharField(max_length=200)
-
-    """docstring for Upload"""
-    def __init__(self, arg):
-        super(Upload, self).__init__()
-        self.arg = arg
         
