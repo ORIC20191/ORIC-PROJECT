@@ -1,6 +1,0 @@
-Você sabe python?
-estou aprendendo
-qual IDE voce usa para programar com python?
-GEdit com o terminal
-Por quê?
-Não sei, é fácil de usar
