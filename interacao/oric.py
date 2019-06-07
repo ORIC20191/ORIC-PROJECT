@@ -1,50 +1,41 @@
+# -*- coding: utf-8 -*-
 from chatterbot import ChatBot
+#from pymongo import MongoClient
+from chatterbot.filters import RepetitiveResponseFilter
 from chatterbot.trainers import ListTrainer
 import os
 
-oric = ChatBot("ORIC")
+#import logging
+#logging.basicConfig(level=logging.INFO)
 
-'''
-conversa = [
-        "Oi",
-        "Olá!",
-        "Tudo bem?",
-        "Eu estou bem"
-]
-'''
+# Cria uma nova instância do chatBot
+bot = ChatBot('Terminal',
+    storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
+    logic_adapters=[
+        'chatterbot.logic.BestMatch'
+    ],
+    filters=[
+        'chatterbot.filters.RepetitiveResponseFilter'
+    ],
+    input_adapter='chatterbot.input.TerminalAdapter',
+    output_adapter='chatterbot.output.TerminalAdapter',
+    database='chatterbot'
+)
 
-trainer = ListTrainer(oric)
-#trainer.train(conversa)
+#bot.set_trainer(ListTrainer)
 
-for arq in os.listdir('arq'):
-    conversa = open('arq/' + arq, 'r').readlines()
-    trainer.train(conversa)
+#trainer = ListTrainer(bot)
+
+for arqs in os.listdir('arq'):
+    conversa = open('arq/' + arqs, 'r').readlines()
+    bot.set_trainer(ListTrainer)
+    bot.train(conversa)
+
+print('Olá humano...')
 
 while True:
     try:
-        pergunta = input('Você: ')
-        resposta = oric.get_response(pergunta)
-        if float(resposta.confidence) > 0.5:
-            print("Oric: ", resposta)
-        else:
-            print("Oric: Eu não sei")
-         
+        bot_input = bot.get_response(None)
+    # Press ctrl-c or ctrl-d on the keyboard to exit
     except (KeyboardInterrupt, EOFError, SystemExit):
         break
-
-'''
-while True:
-    try:
-        pergunta = oric.get_response(input())
-        print(pergunta)
-    except (KeyboardInterrupt, EOFError, SystemExit):
-        break
-
-while True:
-   pergunta = input("Você: ")
-   resposta = oric.get_response(pergunta)
-   if float(resposta.confidence) > 0.5:
-       print("Oric: ", resposta)
-   else:
-       print("Oric: Eu não sei")
-'''
