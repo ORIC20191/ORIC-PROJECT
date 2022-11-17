@@ -23,8 +23,8 @@ As solicitações pull são a melhor maneira de propor alterações na base de c
 ## Qualquer contribuição que você fizer estará sob a licença de software do MIT
 Resumindo, quando você envia alterações de código, entende-se que seus envios estão sob a mesma [Licença MIT](http://choosealicense.com/licenses/mit/) que cobre o projeto. Sinta-se à vontade para entrar em contato com os mantenedores se isso for uma preocupação.
 
-## Relate bugs usando os [problemas] do Github (https://github.com/briandk/transcriptase-atom/issues)
-Usamos problemas do GitHub para rastrear bugs públicos. Relate um bug [abrindo um novo problema](); É tão fácil!
+## Relate bugs usando os [problemas](https://github.com/briandk/transcriptase-atom/issues) do Github 
+Usamos problemas do GitHub para rastrear bugs públicos. Relate um bug [abrindo um novo problema](https://github.com/ORIC20191/ORIC-PROJECT/issues/new?assignees=&labels=&template=bug_report.md&title=); É tão fácil!
 
 ## Escrever relatórios de bugs com detalhes, histórico e código de amostra
 [Este é um exemplo](http://stackoverflow.com/q/12488905/180626) de um relatório de bug que escrevi e acho que não é um modelo ruim. Aqui está [outro exemplo de Craig Hockenberry](http://www.openradar.me/11905408), um desenvolvedor de aplicativos que respeito muito.
